@@ -1,14 +1,5 @@
 steps:
 
-  # Step 0: Debugging Step - Print Current Directory and List Files
-  - name: "ubuntu"
-    entrypoint: "bash"
-    args:
-      - "-c"
-      - |
-        pwd
-        ls -a
-
   # Step 1: Build Docker image
   - name: "gcr.io/cloud-builders/docker"
     args:
@@ -22,6 +13,23 @@ steps:
     args:
       - "push"
       - "us-central1-docker.pkg.dev/assign2-450821/mihir-100947380/frontend-app:$COMMIT_SHA"
+      
+  # Step 3: Deploy to Cloud Run (For Continuous Deployment)
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: "gcloud"
+    args:
+      - "run"
+      - "deploy"
+      - "frontend-app"
+      - "--image"
+      - "us-central1-docker.pkg.dev/assign2-450821/mihir-100947380/frontend-app:$COMMIT_SHA"
+      - "--region"
+      - "us-central1"
+      - "--platform"
+      - "managed"
+      - "--allow-unauthenticated"
+      - "--port"
+      - "3000"
 
 options:
   defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
