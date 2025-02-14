@@ -1,4 +1,12 @@
 steps:
+
+  - name: "gcr.io/cloud-builders/docker"
+    
+    args:
+      - "pwd"
+      - "ls -a"
+      
+
   # Step 1: Build Docker image
   - name: "gcr.io/cloud-builders/docker"
     args:
