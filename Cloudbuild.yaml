@@ -1,6 +1,6 @@
 steps:
 
-  # Step 1: Build Docker image
+  # Build Docker image
   - name: "gcr.io/cloud-builders/docker"
     args:
       - "build"
@@ -8,13 +8,13 @@ steps:
       - "us-central1-docker.pkg.dev/assign2-450821/mihir-100947380/frontend-app:$COMMIT_SHA"
       - "."
 
-  # Step 2: Push Docker image to Artifact Registry
+  #Push Docker image to Artifact Registry
   - name: "gcr.io/cloud-builders/docker"
     args:
       - "push"
       - "us-central1-docker.pkg.dev/assign2-450821/mihir-100947380/frontend-app:$COMMIT_SHA"
-      
-  # Step 3: Deploy to Cloud Run (For Continuous Deployment)
+
+  #Deploy to Cloud Run (For Continuous Deployment)
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
     entrypoint: "gcloud"
     args:
