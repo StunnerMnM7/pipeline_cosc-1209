@@ -1,11 +1,13 @@
 steps:
 
-  - name: "gcr.io/cloud-builders/docker"
-    
+  # Step 0: Debugging Step - Print Current Directory and List Files
+  - name: "ubuntu"
+    entrypoint: "bash"
     args:
-      - "pwd"
-      - "ls -a"
-      
+      - "-c"
+      - |
+        pwd
+        ls -a
 
   # Step 1: Build Docker image
   - name: "gcr.io/cloud-builders/docker"
@@ -20,7 +22,6 @@ steps:
     args:
       - "push"
       - "us-central1-docker.pkg.dev/assign2-450821/mihir-100947380/frontend-app:$COMMIT_SHA"
-
 
 options:
   defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
