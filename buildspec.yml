@@ -9,8 +9,6 @@ phases:
   pre_build:
     commands:
       - echo "Pre-build phase: Checking system details..."
-      - uname -a
-      - echo "AWS CodeBuild environment setup complete."
 
   build:
     commands:
