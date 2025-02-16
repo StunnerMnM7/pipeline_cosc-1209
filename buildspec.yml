@@ -3,25 +3,10 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo "Installing dependencies..."
-      - yum update -y
-      - yum install -y curl
-
-  pre_build:
-    commands:
-      - echo "Pre-build phase: Checking system details..."
-
+      - npm install
   build:
     commands:
-      - echo "Build phase: Running basic tests..."
-      - echo "Hello, Mihir! This is a test build from AWS CodeBuild." > test_output.txt
-      - cat test_output.txt
-
-  post_build:
-    commands:
-      - echo "Post-build phase: Cleanup and final steps..."
-      - echo "Build successful!"
-
+      - npm test
 artifacts:
   files:
-    - test_output.txt
+    - '**/*'
