@@ -4,8 +4,9 @@ phases:
   install:
     commands:
       - echo "Installing dependencies..."
-      - yum update -y && yum install -y curl
-      
+      - yum update -y
+      - yum install -y curl
+
   pre_build:
     commands:
       - echo "Pre-build phase: Checking system details..."
